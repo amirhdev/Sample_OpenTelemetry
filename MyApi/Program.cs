@@ -1,4 +1,11 @@
+using MyApi.Configurations.OpenTelemetry;
+
 var builder = WebApplication.CreateBuilder(args);
+var applicationName = builder.Environment.ApplicationName;
+
+builder.Services.AddOpenTelemetry()
+    .ConfigureTrace(applicationName)
+    .ConfigureMetric(applicationName);
 
 builder.Services.AddControllers();
 
